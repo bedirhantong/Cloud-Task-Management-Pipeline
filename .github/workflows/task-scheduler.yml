@@ -2,8 +2,8 @@ name: Task Scheduler
 
 on:
   schedule:
-   # Bu, her dakika çalışan bir cron job'tur
-   - cron: '*/1 * * * *'   # Her dakika çalışacak
+    # Run every minute
+    - cron: '*/1 * * * *'
 
 jobs:
   create-task:
@@ -16,118 +16,26 @@ jobs:
     - name: Set up .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0'  # Kullandığınız .NET sürümüne göre düzenleyin
+        dotnet-version: '6.0'  # Adjust to your .NET version
 
     - name: Install dependencies
-      run: |
-        dotnet restore ./TaskFunctionApp.sln
+      run: dotnet restore ./TaskFunctionApp.sln
 
-     # Azure Functions Core Tools yükleme
     - name: Install Azure Functions Core Tools v4
+      run: npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+    - name: Run task creation script
       run: |
-        npm install -g azure-functions-core-tools@4 --unsafe-perm true
-   
+        ./scripts/create_tasks.sh # Replace this with your actual script to handle time-specific tasks
 
-    # Görev yaratma komutları
-    - name: Run task creation for 09:00
-      run: |
-        if [ $(date +%H:%M) == "09:00" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi sabah 09:00'da, ve bu task pipeline aracılığı ile oluşturuldu." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 09:05
-      run: |
-        if [ $(date +%H:%M) == "09:05" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi sabah 09:05'te başladı." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 09:10
-      run: |
-        if [ $(date +%H:%M) == "09:10" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi sabah 09:10'da." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 09:15
-      run: |
-        if [ $(date +%H:%M) == "09:15" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi sabah 09:15'te." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 09:30
-      run: |
-        if [ $(date +%H:%M) == "09:30" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi sabah 09:30'da." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 22:30
-      run: |
-        if [ $(date +%H:%M) == "22:30" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi akşam 22:30'da." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    - name: Run task creation for 00:40
-      run: |
-        if [ $(date +%H:%M) == "00:40" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi akşam 23:10'da." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-
-    - name: Run task creation for 00:43
-      run: |
-        if [ $(date +%H:%M) == "00:43" ]; then
-          dotnet run --project ./TaskFunctionApp.csproj -- \
-          --title "Cloud dersi var" \
-          --description "20 Kasım Cloud dersi akşam 23:10'da." \
-          --assignedTo "Bedirhan Tonğ" \
-          --status "New" \
-          --dueDate "20.12.2024"
-        fi
-
-    # Azure Login Step
     - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # Azure Function App Deployment Step
-    - name: Deploy Function App
+    - name: Deploy Azure Function App
       run: |
         func azure functionapp publish Cse415FinalProjectFuncBDO \
         --resource-group Cse415FinalProject \
-        --subscription 1cb8856f-3930-428d-91b2-5553d77f6b53
-        --csharp
+        --subscription 1cb8856f-3930-428d-91b2-5553d77f6b53 \
+        --dotnet
