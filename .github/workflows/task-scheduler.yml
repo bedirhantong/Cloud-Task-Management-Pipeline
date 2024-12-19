@@ -23,9 +23,10 @@ jobs:
         dotnet restore ./TaskFunctionApp.sln
 
      # Azure Functions Core Tools yükleme
-    - name: Install Azure Functions Core Tools
+    - name: Install Azure Functions Core Tools v4
       run: |
-       npm install -g azure-functions-core-tools@3 --unsafe-perm true
+        npm install -g azure-functions-core-tools@4 --unsafe-perm true
+   
 
     # Görev yaratma komutları
     - name: Run task creation for 09:00
@@ -94,9 +95,9 @@ jobs:
           --dueDate "20.12.2024"
         fi
 
-    - name: Run task creation for 00:30
+    - name: Run task creation for 00:40
       run: |
-        if [ $(date +%H:%M) == "00:30" ]; then
+        if [ $(date +%H:%M) == "00:40" ]; then
           dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi akşam 23:10'da." \
@@ -106,9 +107,9 @@ jobs:
         fi
 
 
-    - name: Run task creation for 00:33
+    - name: Run task creation for 00:43
       run: |
-        if [ $(date +%H:%M) == "00:33" ]; then
+        if [ $(date +%H:%M) == "00:43" ]; then
           dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi akşam 23:10'da." \
@@ -129,3 +130,4 @@ jobs:
         func azure functionapp publish Cse415FinalProjectFuncBDO \
         --resource-group Cse415FinalProject \
         --subscription 1cb8856f-3930-428d-91b2-5553d77f6b53
+        --csharp
