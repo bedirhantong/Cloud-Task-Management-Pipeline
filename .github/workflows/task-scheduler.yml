@@ -94,7 +94,7 @@ jobs:
           --dueDate "20.12.2024"
         fi
 
-    - name: Run task creation for 23:10
+    - name: Run task creation for 00:20
       run: |
         if [ $(date +%H:%M) == "23:10" ]; then
           dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
@@ -106,7 +106,7 @@ jobs:
         fi
 
     # 23:50 ile 23:59 arasındaki her dakika için görev oluşturma
-    - name: Run task creation for 23:50 to 23:59
+    - name: Run task creation for 00:22 to 00:30
       run: |
         current_time=$(date +%H:%M)
         if [[ "$current_time" > "23:49" && "$current_time" < "24:00" ]]; then
