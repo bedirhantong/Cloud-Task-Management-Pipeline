@@ -24,6 +24,9 @@ jobs:
     - name: Install Azure Functions Core Tools v4
       run: npm install -g azure-functions-core-tools@4 --unsafe-perm true
 
+    - name: Make create_tasks.sh executable
+      run: chmod +x ./scripts/create_tasks.sh  
+
     - name: Run task creation script
       run: |
         ./scripts/create_tasks.sh # Replace this with your actual script to handle time-specific tasks

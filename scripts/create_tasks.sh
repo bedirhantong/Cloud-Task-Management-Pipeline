@@ -53,18 +53,18 @@ case $current_time in
     --status "New" \
     --dueDate "20.12.2024"
     ;;
-  "00:58")
+  "10:15")
     dotnet run --project ./TaskFunctionApp.csproj -- \
     --title "Cloud dersi var" \
-    --description "20 Kasım Cloud dersi gece 00:40'ta." \
+    --description "20 Kasım Cloud dersi gece 10:15'ta." \
     --assignedTo "Bedirhan Tonğ" \
     --status "New" \
     --dueDate "20.12.2024"
     ;;
-  "00:59")
+  "10:11")
     dotnet run --project ./TaskFunctionApp.csproj -- \
     --title "Cloud dersi var" \
-    --description "20 Kasım Cloud dersi gece 00:43'te." \
+    --description "20 Kasım Cloud dersi gece 10:11'te." \
     --assignedTo "Bedirhan Tonğ" \
     --status "New" \
     --dueDate "20.12.2024"
