@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        dotnet restore ./TaskFunctionApp/TaskFunctionApp.sln
+        dotnet restore ./TaskFunctionApp.sln
 
      # Azure Functions Core Tools yükleme
     - name: Install Azure Functions Core Tools
@@ -31,7 +31,7 @@ jobs:
     - name: Run task creation for 09:00
       run: |
         if [ $(date +%H:%M) == "09:00" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi sabah 09:00'da, ve bu task pipeline aracılığı ile oluşturuldu." \
           --assignedTo "Bedirhan Tonğ" \
@@ -42,7 +42,7 @@ jobs:
     - name: Run task creation for 09:05
       run: |
         if [ $(date +%H:%M) == "09:05" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi sabah 09:05'te başladı." \
           --assignedTo "Bedirhan Tonğ" \
@@ -53,7 +53,7 @@ jobs:
     - name: Run task creation for 09:10
       run: |
         if [ $(date +%H:%M) == "09:10" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi sabah 09:10'da." \
           --assignedTo "Bedirhan Tonğ" \
@@ -64,7 +64,7 @@ jobs:
     - name: Run task creation for 09:15
       run: |
         if [ $(date +%H:%M) == "09:15" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi sabah 09:15'te." \
           --assignedTo "Bedirhan Tonğ" \
@@ -75,7 +75,7 @@ jobs:
     - name: Run task creation for 09:30
       run: |
         if [ $(date +%H:%M) == "09:30" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi sabah 09:30'da." \
           --assignedTo "Bedirhan Tonğ" \
@@ -86,7 +86,7 @@ jobs:
     - name: Run task creation for 22:30
       run: |
         if [ $(date +%H:%M) == "22:30" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi akşam 22:30'da." \
           --assignedTo "Bedirhan Tonğ" \
@@ -97,7 +97,7 @@ jobs:
     - name: Run task creation for 00:30
       run: |
         if [ $(date +%H:%M) == "00:30" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi akşam 23:10'da." \
           --assignedTo "Bedirhan Tonğ" \
@@ -109,7 +109,7 @@ jobs:
     - name: Run task creation for 00:33
       run: |
         if [ $(date +%H:%M) == "00:33" ]; then
-          dotnet run --project TaskFunctionApp/TaskFunctionApp.csproj -- \
+          dotnet run --project ./TaskFunctionApp.csproj -- \
           --title "Cloud dersi var" \
           --description "20 Kasım Cloud dersi akşam 23:10'da." \
           --assignedTo "Bedirhan Tonğ" \
