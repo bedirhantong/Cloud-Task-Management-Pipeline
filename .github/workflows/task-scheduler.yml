@@ -15,6 +15,9 @@ jobs:
   create-task:
     runs-on: ubuntu-latest
 
+    env:
+      TZ: 'Europe/Istanbul'  # Türkiye saati (UTC+3) olarak ayarlanır
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
