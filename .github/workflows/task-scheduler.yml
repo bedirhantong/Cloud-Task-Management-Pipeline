@@ -1,0 +1,95 @@
+name: Task Scheduler
+
+on:
+  schedule:
+    # Cron job zamanlamaları (Türkiye saati: UTC+3)
+    - cron: '0 6 * * *'   # 09:00 Türkiye saati (UTC+3)
+    - cron: '5 6 * * *'    # 09:05 Türkiye saati
+    - cron: '10 6 * * *'   # 09:10 Türkiye saati
+    - cron: '15 6 * * *'   # 09:15 Türkiye saati
+    - cron: '30 6 * * *'   # 09:30 Türkiye saati
+
+jobs:
+  create-task:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0'  # Kullandığınız .NET sürümüne göre düzenleyin
+
+    - name: Install dependencies
+      run: |
+        dotnet restore ./TaskFunctionApp.sln
+
+    - name: Run task creation for 09:00
+      run: |
+        if [ $(date +%H:%M) == "09:00" ]; then
+          dotnet run --project TaskFunctionApp/Program.cs -- \
+          --title "Cloud dersi var" \
+          --description "20 Kasım Cloud dersi sabah 09:00 da, ve bu task pipeline aracılığı ile oluşturuldu." \
+          --assignedTo "Bedirhan Tonğ" \
+          --status "New" \
+          --dueDate "20.12.2024"
+        fi
+
+    - name: Run task creation for 09:05
+      run: |
+        if [ $(date +%H:%M) == "09:05" ]; then
+          dotnet run --project TaskFunctionApp/Program.cs -- \
+          --title "Cloud dersi var" \
+          --description "20 Kasım Cloud dersi sabah 09:05'te başladı." \
+          --assignedTo "Bedirhan Tonğ" \
+          --status "New" \
+          --dueDate "20.12.2024"
+        fi
+
+    - name: Run task creation for 09:10
+      run: |
+        if [ $(date +%H:%M) == "09:10" ]; then
+          dotnet run --project TaskFunctionApp/Program.cs -- \
+          --title "Cloud dersi var" \
+          --description "20 Kasım Cloud dersi sabah 09:10'da." \
+          --assignedTo "Bedirhan Tonğ" \
+          --status "New" \
+          --dueDate "20.12.2024"
+        fi
+
+    - name: Run task creation for 09:15
+      run: |
+        if [ $(date +%H:%M) == "09:15" ]; then
+          dotnet run --project TaskFunctionApp/Program.cs -- \
+          --title "Cloud dersi var" \
+          --description "20 Kasım Cloud dersi sabah 09:15'te." \
+          --assignedTo "Bedirhan Tonğ" \
+          --status "New" \
+          --dueDate "20.12.2024"
+        fi
+
+    - name: Run task creation for 09:30
+      run: |
+        if [ $(date +%H:%M) == "09:30" ]; then
+          dotnet run --project TaskFunctionApp/Program.cs -- \
+          --title "Cloud dersi var" \
+          --description "20 Kasım Cloud dersi sabah 09:30'da." \
+          --assignedTo "Bedirhan Tonğ" \
+          --status "New" \
+          --dueDate "20.12.2024"
+        fi
+
+    # Azure Login Step
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # Azure Function App Deployment Step
+    - name: Deploy Function App
+      run: |
+        func azure functionapp publish Cse415FinalProjectFuncBDO \
+        --resource-group Cse415FinalProject \
+        --subscription 1cb8856f-3930-428d-91b2-5553d77f6b53
