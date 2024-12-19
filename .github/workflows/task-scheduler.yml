@@ -22,6 +22,11 @@ jobs:
       run: |
         dotnet restore ./TaskFunctionApp/TaskFunctionApp.sln
 
+     # Azure Functions Core Tools yükleme
+    - name: Install Azure Functions Core Tools
+      run: |
+       npm install -g azure-functions-core-tools@3 --unsafe-perm true
+
     # Görev yaratma komutları
     - name: Run task creation for 09:00
       run: |
