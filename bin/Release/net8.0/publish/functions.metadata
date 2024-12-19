@@ -1,0 +1,24 @@
+[
+  {
+    "name": "TaskChangedFunction",
+    "scriptFile": "TaskFunctionApp.dll",
+    "entryPoint": "TaskFunctionApp.TaskChangedFunction.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "cosmosDBTrigger",
+        "databaseName": "TaskManagementDB",
+        "containerName": "Tasks",
+        "connection": "CosmosDBConnectionString",
+        "leaseContainerName": "leases",
+        "createLeaseContainerIfNotExists": true,
+        "properties": {}
+      }
+    ]
+  }
+]
