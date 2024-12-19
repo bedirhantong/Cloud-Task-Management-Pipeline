@@ -5157,11 +5157,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/bedirhantong/Documents/CloudKomputing/cse415-fundamentals-of-cloud-computing/24-25/project/TaskFunctionApp/TaskFunctionApp.csproj",
+      "projectUniqueName": "/Users/bedirhantong/Documents/Pipeline/TaskFunctionApp.csproj",
       "projectName": "TaskFunctionApp",
-      "projectPath": "/Users/bedirhantong/Documents/CloudKomputing/cse415-fundamentals-of-cloud-computing/24-25/project/TaskFunctionApp/TaskFunctionApp.csproj",
+      "projectPath": "/Users/bedirhantong/Documents/Pipeline/TaskFunctionApp.csproj",
       "packagesPath": "/Users/bedirhantong/.nuget/packages/",
-      "outputPath": "/Users/bedirhantong/Documents/CloudKomputing/cse415-fundamentals-of-cloud-computing/24-25/project/TaskFunctionApp/obj/",
+      "outputPath": "/Users/bedirhantong/Documents/Pipeline/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/bedirhantong/.nuget/NuGet/NuGet.Config"
